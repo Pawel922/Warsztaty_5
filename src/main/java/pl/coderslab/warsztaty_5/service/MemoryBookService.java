@@ -28,7 +28,11 @@ public class MemoryBookService implements BookService {
 
     @Override
     public Book getBookById(long id) {
-        return null;
+        Book foundBook = books.stream()
+                .filter(book -> book.getId() == id)
+                .findFirst()
+                .orElseThrow(()-> new RuntimeException("Book with given id does not exist"));
+        return foundBook;
     }
 
     @Override
