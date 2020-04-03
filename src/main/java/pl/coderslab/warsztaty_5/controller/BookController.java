@@ -1,10 +1,7 @@
 package pl.coderslab.warsztaty_5.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.warsztaty_5.model.Book;
 import pl.coderslab.warsztaty_5.service.BookService;
 
@@ -28,7 +25,11 @@ public class BookController {
 
     @GetMapping("/{id}")
     public Book bookById(@PathVariable long id) {
-        Book book = bookService.getBookById(id);
-        return book;
+        return bookService.getBookById(id);
+    }
+
+    @PostMapping
+    public Book addBook(@RequestBody Book book) {
+        return bookService.saveBook(book);
     }
 }
