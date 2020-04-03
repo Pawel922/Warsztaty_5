@@ -48,7 +48,13 @@ public class MemoryBookService implements BookService {
 
     @Override
     public Book updateBook(long id, Book book) {
-        return null;
+        Book bookToUpdate = getBookById(id);
+        bookToUpdate.setIsbn(book.getIsbn());
+        bookToUpdate.setTitle(book.getTitle());
+        bookToUpdate.setAuthor(book.getAuthor());
+        bookToUpdate.setPublisher(book.getPublisher());
+        bookToUpdate.setType(book.getType());
+        return bookToUpdate;
     }
 
     @Override
