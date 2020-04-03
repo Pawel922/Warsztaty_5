@@ -37,7 +37,13 @@ public class MemoryBookService implements BookService {
 
     @Override
     public Book saveBook(Book book) {
-        return null;
+        long lastId = books.stream()
+                .mapToLong(Book::getId)
+                .max()
+                .orElse(0);
+        book.setId(lastId + 1);
+        books.add(book);
+        return book;
     }
 
     @Override
